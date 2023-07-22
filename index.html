@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMSUBMITONLOCALSTORAGE</title>
+</head>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <label>Name:</label>
+        <input type="text" name = "username" required>
+        <label>Email ID:</label>
+        <input type="text" name = "emailId" required>
+        <label>Phone no:</label>
+        <input type="tel" name="phonenumber">
+        <button>Submit</button>
+
+
+    </form>
+    <script>
+        function saveToLocalStorage(event){
+            event.preventDefault();
+            let name = event.target.username.value;
+            let email = event.target.emailId.value;
+            let phonenumber = event.target.phonenumber.value;
+
+            localStorage.setItem('name', name);
+            localStorage.setItem('email',email);
+            localStorage.setItem('phonenumber',phonenumber);
+        }
+    </script>
+</body>
+</html>
