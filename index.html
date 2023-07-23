@@ -14,7 +14,10 @@
         <label>Phone no:</label>
         <input type="tel" name="phonenumber">
         <button>Submit</button>
-    </form>
+    </form> 
+    <ul id="listOfItems">
+        
+    </ul>
     <script>
         function saveToLocalStorage(event){
             event.preventDefault();
@@ -22,17 +25,18 @@
             let email = event.target.emailId.value;
             let phonenumber = event.target.phonenumber.value;
 
-            let userObj = {
-                name: name,
-                email: email,
-                phonenumber: phonenumber
+            let obj = {
+                name,
+                email,
+                phonenumber
             };
+            localStorage.setItem(obj.email, JSON.stringify(obj))
+            showUserOnScreen(obj)
+        }
+        function showUserOnScreen(obj){
+            let parentElem = document.getElementById('listOfItems');
 
-            let userObj_serial = JSON.stringify(userObj);
-            localStorage.setItem("userObj", userObj_serial);
-
-            let userObj_deserial = JSON.parse(localStorage.getItem("userObj"));
-            console.log(userObj_deserial);
+            parentElem.innerHTML = parentElem.innerHTML + `<li>${obj.name} - ${obj.email} - ${obj.phonenumber}`;
         }
     </script>
 </body>
