@@ -30,14 +30,35 @@
                 email,
                 phonenumber
             };
-            localStorage.setItem(obj.email, JSON.stringify(obj))
-            showUserOnScreen(obj)
+            localStorage.setItem(obj.email, JSON.stringify(obj));
+            showUserOnScreen(obj);
         }
+
         function showUserOnScreen(obj){
             let parentElem = document.getElementById('listOfItems');
 
-            parentElem.innerHTML = parentElem.innerHTML + `<li>${obj.name} - ${obj.email} - ${obj.phonenumber}`;
+            let listItem = document.createElement('li');
+            listItem.textContent = `${obj.name} - ${obj.email} - ${obj.phonenumber}`;
+
+            
+            let deleteButton = document.createElement('input');
+            deleteButton.type = 'button';
+            deleteButton.value = 'Delete';
+
+            
+            deleteButton.addEventListener('click', function() {
+                
+                parentElem.removeChild(listItem);
+                
+                localStorage.removeItem(obj.email);
+            });
+
+            
+            listItem.appendChild(deleteButton);
+
+             parentElem.appendChild(listItem);
         }
+
     </script>
 </body>
 </html>
